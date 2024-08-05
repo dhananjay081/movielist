@@ -3,6 +3,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from 'react-responsive-carousel';
 import { Link } from 'react-router-dom';
 import { IoIosStar } from "react-icons/io";
+import Movielist from '../movieList/movielist';
 
 function Home() {
     const [popularMovies, setPopularMovies] = useState([]);
@@ -14,7 +15,7 @@ function Home() {
     }, []);
 
     return (
-        <div className="poster">
+        <div className="poster pt-32 ">
             <Carousel
                 showThumbs={false}
                 autoPlay={true}
@@ -23,25 +24,23 @@ function Home() {
                 showStatus={false}
             >
                 {popularMovies.map(movie => (
-                    <Link className='text-white' to={`/movie/&{movie.id}`}>
-                      <div className="h-[38rem]">
-                         <img className='m-auto w-full h-[38rem] block' src={`https://image.tmdb.org/t/p/original${movie && movie.backdrop_path}`} alt="" />
-                      </div>
-                      <div className="absolute p-5 bottom-0 h-3/4 flex flex-col w-full justify-end bg-custom-gradient opacity-1 transition-opacity duration-300">
-                        <div className="font-black text-6xl mb-2 text-left">{movie? movie.original_title: ""}</div>
-                        <div className="flex flex-row left-0 text-3xl mb-4">
-                          {movie ? movie.release_date : " "} 
-                          <span className='bg-red ml-12'>
-                             {movie ? movie.vote_average : " "}
-                          </span>
-                          <span className='ml-3'> <IoIosStar /> </span>
+                    <Link key={movie.id} className='text-white h-screen' to={`/movie/${movie.id}`}>
+                        <div className="relative h-3/4 w-full ">
+                            <img className='m-auto w-full  h-full object-cover' src={`https://image.tmdb.org/t/p/original${movie && movie.backdrop_path}`} alt="" />
+                            <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black to-transparent p-5 ">
+                                <div className="font-black text-4xl mb-2">{movie ? movie.original_title : ""}</div>
+                                <div className="flex items-center text-xl mb-4">
+                                    {movie ? movie.release_date : " "} 
+                                    <span className='bg-red-500 ml-4 px-2 py-1 rounded'>{movie ? movie.vote_average : " "}</span>
+                                    <span className='ml-2'> <IoIosStar /> </span>
+                                </div>
+                                <div className="italic text-lg">{movie ? movie.overview : " "}</div>
+                            </div>
                         </div>
-                        <div className="italic font- text-xl mb-1 flex text-left w-1/2" >{movie? movie.overview : " "}</div>
-                      </div>
-
                     </Link>
                 ))}
             </Carousel>
+            <Movielist />
         </div>
     );
 }
