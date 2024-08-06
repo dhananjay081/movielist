@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import React from 'react';
 import Card from '../cards/card';
@@ -19,9 +18,9 @@ function Movielist() {
     };
 
     return (
-        <div className="movie_list pt-0 pr-12 pb-12 pl-12">
-            <h2 className='list_title text-2xl m-10'>{(type ? type : "POPULAR").toUpperCase()}</h2>
-            <div className='list_cards flex flex-wrap justify-center'>
+        <div className="movie_list p-4 sm:p-8 md:p-12">
+            <h2 className='list_title text-xl sm:text-2xl md:text-3xl m-4 sm:m-6 md:m-10'>{(type ? type : "POPULAR").toUpperCase()}</h2>
+            <div className='list_cards grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 justify-center'>
                 {
                     movielist.map((movie, index) => (
                         <Card key={index} movie={movie} />
