@@ -34,7 +34,8 @@ function Home() {
                                     <span className='bg-red-500 ml-2 sm:ml-4 px-1 sm:px-2 py-0.5 sm:py-1 rounded'>{movie ? movie.vote_average : " "}</span>
                                     <span className='ml-1 sm:ml-2'> <IoIosStar /> </span>
                                 </div>
-                                <div className="italic text-sm sm:text-lg">{movie ? movie.overview : " "}</div>
+                                <div className="italic text-sm sm:text-lg p-2 sm:p-4 overflow-hidden text-ellipsis"> {movie ? movie.overview : " "}</div>
+
                             </div>
                         </div>
                     </Link>
